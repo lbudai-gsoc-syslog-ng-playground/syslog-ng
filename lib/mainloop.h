@@ -29,6 +29,7 @@
 
 
 extern gboolean syntax_only;
+extern gboolean command_line_mode;
 extern gboolean __main_loop_is_terminating;
 extern ThreadId main_thread_handle;
 
@@ -67,5 +68,6 @@ void main_loop_add_options(GOptionContext *ctx);
 
 gboolean main_loop_initialize_state(GlobalConfig *cfg, const gchar *persist_filename);
 
+void main_loop_exit_initiate(void);
 
 #endif

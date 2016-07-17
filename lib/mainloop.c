@@ -97,6 +97,7 @@
 static gchar *preprocess_into = NULL;
 gboolean syntax_only = FALSE;
 gboolean interactive_mode = FALSE;
+gboolean command_line_mode = FALSE;
 
 /*
  * This variable is used to detect that syslog-ng is being terminated, in which
@@ -300,7 +301,7 @@ main_loop_exit_timer_elapsed(void *arg)
   main_loop_worker_sync_call(main_loop_exit_finish);
 }
 
-static void
+void
 main_loop_exit_initiate(void)
 {
   if (main_loop_is_terminating())
@@ -507,6 +508,7 @@ static GOptionEntry main_loop_options[] =
   { "syntax-only",       's',         0, G_OPTION_ARG_NONE, &syntax_only, "Only read and parse config file", NULL},
   { "control",           'c',         0, G_OPTION_ARG_STRING, &resolvedConfigurablePaths.ctlfilename, "Set syslog-ng control socket, default=" PATH_CONTROL_SOCKET, "<ctlpath>" },
   { "interactive",       'i',         0, G_OPTION_ARG_NONE, &interactive_mode, "Enable interactive mode" },
+  { "cli",               'l',         0, G_OPTION_ARG_NONE, &command_line_mode, "Run as a command line tool" },
   { NULL },
 };
 
